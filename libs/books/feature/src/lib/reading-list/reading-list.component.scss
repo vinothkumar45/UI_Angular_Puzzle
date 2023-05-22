@@ -45,3 +45,30 @@
   font-size: 1rem;
   color: $gray60;
 }
+
+
+.finished-date {
+  font-size: .65rem;
+  color: green;
+}
+
+.finish {
+  color: green;
+  display: contents;
+}
+
+#book-actions{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+}
+
+.finished {
+  position: absolute;
+  right: 35px;
+
+  mat-icon {
+    color: $green;
+    cursor: not-allowed;
+  }
+}

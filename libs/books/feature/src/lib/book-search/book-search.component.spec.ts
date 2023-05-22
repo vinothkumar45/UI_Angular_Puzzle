@@ -36,7 +36,9 @@ describe('ProductsListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeDefined();
-  }); it('should return formatted data', () => {
+  }); 
+  
+  it('should return formatted data', () => {
     expect(component.formatDate('08/22/2020')).toBe('8/22/2020');
   })
 
