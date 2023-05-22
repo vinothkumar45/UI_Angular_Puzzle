@@ -41,6 +41,11 @@ const readingListReducer = createReducer(
       loaded: true
     });
   }),
+
+  on(ReadingListActions.failedAddToReadingList, (state, action) => {
+    return readingListAdapter.removeOne(action.book.id, state)
+  }
+),
   on(ReadingListActions.loadReadingListError, (state, action) => {
     return {
       ...state,
@@ -49,6 +54,9 @@ const readingListReducer = createReducer(
   }),
   on(ReadingListActions.addToReadingList, (state, action) =>
     readingListAdapter.addOne({ bookId: action.book.id, ...action.book }, state)
+  ),
+  on(ReadingListActions.failedRemoveFromReadingList, (state, action) =>
+  readingListAdapter.addOne({ bookId: action.item.bookId, ...action.item }, state)
   ),
   on(ReadingListActions.removeFromReadingList, (state, action) =>
     readingListAdapter.removeOne(action.item.bookId, state)
