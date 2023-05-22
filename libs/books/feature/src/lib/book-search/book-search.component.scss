@@ -68,5 +68,24 @@ form {
   justify-content: center;
   min-height: 50vh;
   font-size: 1.5rem;
-  color: $gray40;
+  color: $black;
+}
+.btn-search-link{
+  border: 0;
+  background: none;
+  color: $pink-accent;
+  cursor: pointer;
+}
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.alert-danger{
+  border-color: $pink-light;
+  color: $pink-dark;
+  background-color: $gray90;
 }

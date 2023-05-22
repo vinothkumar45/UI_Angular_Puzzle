@@ -19,7 +19,11 @@ export const getBooksLoaded = createSelector(
 
 export const getBooksError = createSelector(
   getBooksState,
-  (state: State) => state.error
+  (state: State) => {
+    if(state && state.error){
+      return state.error
+    }
+  }
 );
 
 export const getBooks = createSelector(getBooksState, selectAll);

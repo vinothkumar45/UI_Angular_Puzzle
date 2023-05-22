@@ -42,4 +42,18 @@ describe('BooksEffects', () => {
       httpMock.expectOne('/api/books/search?q=').flush([createBook('A')]);
     });
   });
+
+  it(' it should invoke searchBooksFailure action on SEARCH fail', done => {
+    actions = new ReplaySubject();
+    actions.next(BooksActions.searchBooks({ term: '' }));
+
+    effects.searchBooks$.subscribe(action => {
+      expect(action.type).toEqual(
+        BooksActions.searchBooksFailure(new ErrorEvent(`Couldn't fetch Book details for the given search term!`)).type
+      );
+      done();
+    });
+
+    httpMock.expectOne('/api/books/search?q=').error(new ErrorEvent(`Couldn't fetch Book details for the given search term!`));
+  });
 });
