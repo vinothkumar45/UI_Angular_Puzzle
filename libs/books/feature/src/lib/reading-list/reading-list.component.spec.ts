@@ -38,4 +38,12 @@ describe('ReadingListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('should mark a book as read', () => {
+    const book: ReadingListItem = createReadingListItem('B');
+    book.finished = true;
+    book.finishedDate = new Date().toISOString();
+    component.markAsRead(book);
+    expect(store.dispatch).toHaveBeenCalled();
+  });
 });

@@ -63,6 +63,19 @@ describe('Books Reducer', () => {
       expect(result.ids.length).toEqual(1);
     });
 
+    it('failedMarkAsRead should undo book reading status', () => {
+      const item = {
+        ...createReadingListItem('A'),
+        finished: true,
+        finishedDate: new Date().toISOString()
+      }
+      const action = ReadingListActions.failedMarkAsRead({
+        item
+      });
+      const result: State = reducer(state, action);
+      expect(result.entities['A'].finished).toEqual(false);
+    });
+    
     it('should remove from reading list', () => {
       const list = [
         createReadingListItem('A'),
@@ -74,8 +87,22 @@ describe('Books Reducer', () => {
       const result: State = reducer(initialState, action);
       expect(result.ids.length).toEqual(0);
     });
-  });
 
+    
+    it('confirmedMarkAsRead should mark a book as read', () => {
+      const item = {
+        ...createReadingListItem('A'),
+        finished: true,
+        finishedDate: new Date().toISOString()
+      }
+      const action = ReadingListActions.confirmedMarkAsRead({
+        item
+      });
+      const result: State = reducer(state, action);
+      expect(result.entities['A'].finished).toEqual(item.finished);
+    });
+
+  });
 
   describe('unknown action', () => {
     it('should return the previous state', () => {
